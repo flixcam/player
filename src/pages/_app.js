@@ -3,13 +3,24 @@
 import '../styles/globals.css';
 import '../styles/main.css';
 import Script from 'next/script';
-import disableDevtool from 'disable-devtool';
+import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
-  // Initialize disableDevtool
-  if (typeof window !== 'undefined') {
-    disableDevtool();
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Initialize DisableDevtool with options after the script is loaded
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/disable-devtool';
+      script.onload = () => {
+        if (window.DisableDevtool) {
+          window.DisableDevtool({
+            // Add any configuration options here
+          });
+        }
+      };
+      document.body.appendChild(script);
+    }
+  }, []);
 
   return (
     <>
