@@ -3,8 +3,14 @@
 import '../styles/globals.css';
 import '../styles/main.css';
 import Script from 'next/script';
+import disableDevtool from 'disable-devtool';
 
 function MyApp({ Component, pageProps }) {
+  // Initialize disableDevtool
+  if (typeof window !== 'undefined') {
+    disableDevtool();
+  }
+
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
