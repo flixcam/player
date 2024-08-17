@@ -10,6 +10,11 @@ const JWPlayer = () => {
       abouttext: "Join Telegram",
       aboutlink: "https://t.me/kimostream",
       skin: { name: "netflix" },
+      logo: {
+        file:
+          "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+        link: "https://www.buymeacoffee.com/pingo"
+      },
       captions: {
         color: "#FFF",
         fontSize: 14,

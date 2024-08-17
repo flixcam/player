@@ -20,6 +20,7 @@ const JWPlayer = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter(); // Initialize useRouter
+  const { logo } = router.query; // Extract logo from query parameters
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,6 +77,9 @@ const JWPlayer = () => {
         abouttext: "Join Telegram",
         aboutlink: "https://t.me/kimostream",
         skin: { name: "netflix" },
+        logo: logo ? {
+          file: logo
+        } : undefined,
         captions: {
           color: "#FFF",
           fontSize: 14,
@@ -137,7 +141,7 @@ const JWPlayer = () => {
         });
       });
     }
-  }, [playlistData]);
+  }, [playlistData, logo]);
 
   if (loading) return <div>Loading...</div>;
 

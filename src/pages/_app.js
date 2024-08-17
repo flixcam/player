@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     if (typeof window !== 'undefined') {
       // Initialize DisableDevtool with options after the script is loaded
       const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/disable-devtool';
+      script.src = 'https://cdn.jsdelivr.net/npm/disable-devtooll';
       script.onload = () => {
         if (window.DisableDevtool) {
           window.DisableDevtool({
@@ -19,6 +19,22 @@ function MyApp({ Component, pageProps }) {
         }
       };
       document.body.appendChild(script);
+
+      // Initialize Yandex.Metrika after the script is loaded
+      const yandexScript = document.createElement('script');
+      yandexScript.src = 'https://mc.yandex.ru/metrika/tag.js';
+      yandexScript.async = true;
+      yandexScript.onload = () => {
+        if (window.ym) {
+          window.ym(98096466, 'init', {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+          });
+        }
+      };
+      document.body.appendChild(yandexScript);
     }
   }, []);
 
@@ -41,6 +57,17 @@ function MyApp({ Component, pageProps }) {
           `,
         }}
       />
+      {/* Yandex.Metrika counter */}
+      <noscript>
+        <div>
+          <img
+            src="https://mc.yandex.ru/watch/98096466"
+            style={{ position: 'absolute', left: '-9999px' }}
+            alt=""
+          />
+        </div>
+      </noscript>
+      {/* /Yandex.Metrika counter */}
       <Component {...pageProps} />
     </>
   );
